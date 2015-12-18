@@ -4,7 +4,7 @@
 #||                                                  ||
 #+====================================================+
 
-
+#teeeeeeest
 
 # Font
 font -*-Terminus-medium-*-*-*-13-*-*-*-*-*-iso10646-1
@@ -15,7 +15,7 @@ set $mod Mod4
 # Window border multiplier
 set $borders 4
 
-# Number of pixeels to resize by in resize mode
+# Number of pixels to resize by in resize mode
 set $resize 5
 
 # Window options
