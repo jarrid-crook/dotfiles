@@ -1,0 +1,187 @@
+#+====================================================+
+#||                                                  ||
+#||                Rocksteady i3 Config              ||
+#||                                                  ||
+#+====================================================+
+
+
+
+# Font
+font -*-Terminus-medium-*-*-*-13-*-*-*-*-*-iso10646-1
+
+# Set mod key
+set $mod Mod4
+
+# Window border multiplier
+set $borders 4
+
+# Number of pixeels to resize by in resize mode
+set $resize 5
+
+# Window options
+focus_follows_mouse true
+popup_during_fullscreen smart
+
+# Window borders
+hide_edge_borders true
+new_float pixel $borders
+new_window pixel $borders
+
+# Set gap sizes. Keep 'gapso' set to 0
+set $gapso 0
+set $gapsi 12
+set $pgapsi 8
+set $pgapso 32
+
+# Set initial gaps
+gaps inner $gapsi
+gaps outer $gapso
+
+# Window colors
+client.focused              #f0e4dc #f0e4dc #f0e4dc #f0e4dc 
+client.focused_inactive     #f0e4dc #382449 #ebdbb2 #382449
+client.unfocused            #434e4a #70838c #ebdbb2 #382449
+client.urgent               #bf616a #bf616a #ee0000 #bf616a
+
+# KEYBINDS
+
+# Lock
+bindsym Mod4+u exec /bin/lock
+
+# start a terminal
+bindsym Mod4+Return exec xterm
+
+# kill focused window
+bindsym Mod4+q kill
+
+# start dmenu 
+bindsym Mod4+d exec dmenu_run -fn  "-*-anorexia-medium-*-*-*-11-*-*-*-*-*-*-*" -nb "#101010" -nf "#999999" -sb "#4e5c63" -sf "#101010" -b 
+
+# change focus
+bindsym Mod4+j focus right
+bindsym Mod4+k focus down
+bindsym Mod4+i focus up
+bindsym Mod4+l focus left
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Left focus left
+bindsym Mod4+Down focus down
+bindsym Mod4+Up focus up
+bindsym Mod4+Right focus right
+
+# move focused window
+bindsym Mod4+Shift+l move left
+bindsym Mod4+Shift+k move down
+bindsym Mod4+Shift+i move up
+bindsym Mod4+Shift+j move right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Shift+Left move left
+bindsym Mod4+Shift+Down move down
+bindsym Mod4+Shift+Up move up
+bindsym Mod4+Shift+Right move right
+
+# split in horizontal orientation
+bindsym Mod4+h split h
+
+# split in vertical orientation
+bindsym Mod4+v split v
+
+# enter fullscreen mode for the focused container
+bindsym Mod4+f fullscreen
+
+# change container layout (stacked, tabbed, default)
+bindsym Mod4+s layout stacking
+bindsym Mod4+w layout tabbed
+bindsym Mod4+n layout default
+
+# toggle tiling / floating
+bindsym Mod4+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym Mod4+space focus mode_toggle
+
+# focus the parent container
+bindsym Mod4+a focus parent
+
+# Switch to certain workspaces
+bindsym $mod+comma              workspace prev
+bindsym $mod+period             workspace next
+bindsym $mod+1 			workspace 1: terms
+bindsym $mod+2 			workspace 2: chrome
+bindsym $mod+3 			workspace 3: files
+bindsym $mod+4 			workspace 4: virt
+bindsym $mod+5 			workspace 5: scratch1
+bindsym $mod+6 			workspace 6: scratch2
+bindsym $mod+7 			workspace 7: scratch3
+bindsym $mod+8 			workspace 8: scratch4
+bindsym $mod+9 			workspace 9: scratch5
+
+# Move to certain workspaces
+bindsym $mod+Shift+comma  move container to workspace prev
+bindsym $mod+Shift+period move container to workspace next
+bindsym $mod+Shift+1 	move container to workspace 1: terms
+bindsym $mod+Shift+2 	move container to workspace 2: chrome
+bindsym $mod+Shift+3 	move container to workspace 3: files
+bindsym $mod+Shift+4 	move container to workspace 4: virt
+bindsym $mod+Shift+5	move container to workspace 5: scratch1
+bindsym $mod+Shift+6	move container to workspace 6: scratch2
+bindsym $mod+Shift+7 	move container to workspace 7: scratch3
+bindsym $mod+Shift+8 	move container to workspace 8: scratch4
+bindsym $mod+Shift+9 	move container to workspace 9: scratch5
+
+# reload the configuration file
+bindsym Mod4+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym Mod4+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym Mod4+Shift+q exit
+
+#Volume
+bindsym Mod4+o exec /bin/voldown
+bindsym Mod4+p exec /bin/volup
+
+#Brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
+# Browser
+bindsym Mod4+b exec google-chrome-stable
+
+# Gnome Control Center
+bindsym Mod4+g exec gnome-control-center
+
+# Start i3bar.
+bar {
+    strip_workspace_numbers no
+  position top
+    status_command i3blocks
+    separator_symbol " "
+  tray_output none
+  font pango: Terminus, Icons 10
+  colors {
+    background #434e4a
+    statusline #ffffff
+    separator #ffffff
+    focused_workspace #f0e4dc #434e4a #ffffff
+    active_workspace #434e4a #434e4a #ffffff
+    inactive_workspace #434e4a #434e4a #ffffff
+    urgent_workspace #bf616a #65737e #ffffff
+  }
+}
+
+# Load Xresources file
+exec xrdb -load .Xresources
+
+exec --no-startup-id nm-applet
+
+# Set background
+exec feh --bg-fill pictures/wallpapers/town.jpg
+
+# Lock screen
+exec xautolock -time 15 -locker '/bin/lock'
+
+# Suspend
+bindsym Mod4+Shift+s exec /bin/locksus
